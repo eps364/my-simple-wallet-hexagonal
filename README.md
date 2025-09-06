@@ -46,6 +46,7 @@ srv
     └── test
 ```
 
+
 ## Objetivo da Arquitetura
 
 O objetivo desta arquitetura é isolar a lógica central da aplicação (as regras de negócio) de dependências externas, como banco de dados, interfaces de usuário e outros frameworks.
@@ -84,3 +85,6 @@ Isso torna o sistema mais fácil de testar, manter e adaptar a novas tecnologias
 - **[Ports and Adapters Architecture](https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/)** - Artigo por Herberto Graca.
 - **[Hexagonal Architecture in Spring Boot](https://github.com/sonnesen/fiap-product-api-with-ports-and-adapters)** - Github do Prof. Winston Spencer Sonnesen
 - **[Arquitetura Hexagonal | #AluraMais](https://www.youtube.com/watch?v=X_EPcBNI5xU)** - Vinícius Dias, Instrutor na Alura
+- **[Arquitetura Hexagonal na Prática | Arquitetura com Java e Spring Boot](https://youtu.be/UKSj5VJEzps?si=WV9dvtiY0pPyMq5M)** - Fernanda Kipper
+- **[Arquitetura Hexagonal (Explicação de Ports & Adapters Simplificada) // Dicionário do Programador](https://youtu.be/7SaA3HCOc4c?si=vGryZRb_o7W_3vJS)** - Código Fonte TV
+- **[Quando utilizar a Arquitetura Hexagonal - Palestra no TDC](https://youtu.be/opH8tomzw60?si=yh2tW0-rfq21pKSk)** - Nataniel Paiva
