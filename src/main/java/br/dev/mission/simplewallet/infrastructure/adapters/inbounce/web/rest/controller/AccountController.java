@@ -1,4 +1,4 @@
-package br.dev.mission.simplewallet.entrypoint.rest.controller;
+package br.dev.mission.simplewallet.infrastructure.adapters.inbounce.web.rest.controller;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.dev.mission.simplewallet.core.model.account.AccountCore;
 import br.dev.mission.simplewallet.core.ports.inbounce.account.AccountPort;
-import br.dev.mission.simplewallet.entrypoint.rest.dto.account.AccountResponse;
+import br.dev.mission.simplewallet.infrastructure.adapters.inbounce.web.rest.dto.account.AccountResponse;
 
 @RestController
 @RequestMapping("/accounts")

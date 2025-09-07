@@ -1,4 +1,4 @@
-package br.dev.mission.simplewallet.entrypoint.rest.dto.account;
+package br.dev.mission.simplewallet.infrastructure.adapters.inbounce.web.rest.dto.account;
 
 import java.math.BigDecimal;
 
