@@ -1,0 +1,57 @@
+# Configuração do profile de desenvolvimento
+server:
+  port: ${PORT:8080}
+
+spring:
+  jackson:
+    time-zone: America/Sao_Paulo
+  # Docker Compose Support para facilitar desenvolvimento
+  docker:
+    compose:
+      enabled: true
+      file: docker-compose.yml
+
+  # Configuração do banco de dados PostgreSQL
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:simplewallet}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+
+  # Configuração JPA/Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: ${HIBERNATE_DDL_AUTO:update}
+    show-sql: ${SHOW_SQL:true}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        use_sql_comments: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+# Configuração de logging para desenvolvimento
+logging:
+  level:
+    br.dev.mission.simplewallet: ${LOG_LEVEL:DEBUG}
+    org.springframework.web: ${WEB_LOG_LEVEL:INFO}
+    org.hibernate.SQL: ${SQL_LOG_LEVEL:DEBUG}
+    org.hibernate.type.descriptor.sql.BasicBinder: ${SQL_PARAM_LOG_LEVEL:TRACE}
+
+# Configurações de desenvolvimento
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+
+  
