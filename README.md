@@ -19,7 +19,7 @@ src/main/java/br/dev/mission/simplewallet/
 │   │   └── account/
 │   │       └── AccountCore.java             # Entidade de domínio
 │   ├── ports/
-│   │   ├── inbound/                         # Portos de entrada
+│   │   ├── inbound/                         # Portas de entrada
 │   │   │   └── account/
 │   │   │       └── AccountPort.java         # ← interface (Casos de uso)
 │   │   └── outbound/                        # Portas de saída
