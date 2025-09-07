@@ -1,6 +1,7 @@
 package br.dev.mission.simplewallet.api.application.domain.model.account;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public class Account {
     private Long id;
@@ -8,6 +9,6 @@ public class Account {
     private BigDecimal balance;
     private BigDecimal credit;
     private Integer dueDate;
-    private String userId;
+    private UUID userId;
 
 }

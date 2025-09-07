@@ -3,30 +3,22 @@ package br.dev.mission.simplewallet.api.application.domain.model.transaction;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Transaction {
 
     private Long id;
-
     private LocalDate dueDate;
-
     private LocalDate effectiveDate;
-
     private String description;
-
     private BigDecimal amount;
-
     private BigDecimal effectiveAmount;
-
     private Long category;
-
     private TransactionType type;
-
     private LocalDateTime created;
-
     private LocalDateTime updated;
-
     private Long accountId;
+    private UUID userId;
 
     public String getStatus() {
         if (this.effectiveDate != null) {
