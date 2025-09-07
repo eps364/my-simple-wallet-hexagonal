@@ -11,12 +11,12 @@ spring:
       enabled: true
       file: docker-compose.yml
 
-  # Configuração do banco de dados PostgreSQL
+  # Configuração do banco de dados H2 em memória para testes
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:simplewallet}
-    username: ${POSTGRES_USER:postgres}
-    password: ${POSTGRES_PASSWORD:postgres}
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: ''
+    driver-class-name: org.h2.Driver
     hikari:
       connection-timeout: 20000
       maximum-pool-size: 5
@@ -24,34 +24,37 @@ spring:
   # Configuração JPA/Hibernate
   jpa:
     hibernate:
-      ddl-auto: ${HIBERNATE_DDL_AUTO:update}
-    show-sql: ${SHOW_SQL:true}
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-        use_sql_comments: true
-        jdbc:
-          lob:
-            non_contextual_creation: true
+        ddl-auto: update
+    show-sql: true
 
-# Configuração de logging para desenvolvimento
+h2:
+  console:
+    enabled: true
+    path: /h2-console
+
 logging:
   level:
-    br.dev.mission.simplewallet: ${LOG_LEVEL:DEBUG}
-    org.springframework.web: ${WEB_LOG_LEVEL:INFO}
-    org.hibernate.SQL: ${SQL_LOG_LEVEL:DEBUG}
-    org.hibernate.type.descriptor.sql.BasicBinder: ${SQL_PARAM_LOG_LEVEL:TRACE}
+    org.hibernate.SQL: DEBUG
+    "org.hibernate.type.descriptor.sql.BasicBinder": TRACE
 
-# Configurações de desenvolvimento
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics
-  endpoint:
-    health:
-      show-details: always
+
+# # Configuração de logging para desenvolvimento
+# logging:
+#   level:
+#     br.dev.mission.simplewallet: ${LOG_LEVEL:DEBUG}
+#     org.springframework.web: ${WEB_LOG_LEVEL:INFO}
+#     org.hibernate.SQL: ${SQL_LOG_LEVEL:DEBUG}
+#     org.hibernate.type.descriptor.sql.BasicBinder: ${SQL_PARAM_LOG_LEVEL:TRACE}
+
+# # Configurações de desenvolvimento
+# management:
+#   endpoints:
+#     web:
+#       exposure:
+#         include: health,info,metrics
+#   endpoint:
+#     health:
+#       show-details: always
 
 
   
