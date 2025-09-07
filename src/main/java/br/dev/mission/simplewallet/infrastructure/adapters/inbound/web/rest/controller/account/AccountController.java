@@ -1,7 +1,8 @@
-package br.dev.mission.simplewallet.infrastructure.adapters.inbounce.web.rest.controller.account;
+package br.dev.mission.simplewallet.infrastructure.adapters.inbound.web.rest.controller.account;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,13 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.dev.mission.simplewallet.core.model.account.AccountCore;
 import br.dev.mission.simplewallet.core.ports.inbounce.account.AccountPort;
 import br.dev.mission.simplewallet.core.ports.output.dto.account.AccountResponseCore;
-import br.dev.mission.simplewallet.infrastructure.adapters.inbounce.web.rest.dto.account.AccountResponse;
+import br.dev.mission.simplewallet.infrastructure.adapters.inbound.web.rest.dto.account.AccountRequest;
+import br.dev.mission.simplewallet.infrastructure.adapters.inbound.web.rest.dto.account.AccountResponse;
+import jakarta.validation.Valid;
+
 
 @RestController
-@RequestMapping("/accounts")
+@RequestMapping("/api/accounts")
 public class AccountController {
     private final AccountPort accountPort;
 
@@ -27,15 +30,17 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<AccountResponse> createAccount(@RequestBody AccountCore accountCore) {
-        var createdAccount = accountPort.createAccount(accountCore);
-        return ResponseEntity.ok(AccountResponse.fromAccountResponseCore(createdAccount));
+    public ResponseEntity<AccountResponse> createAccount(@Valid @RequestBody AccountRequest request) {
+        var createdAccount = accountPort.createAccount(request.toCore());
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .body(AccountResponse.fromAccountResponseCore(createdAccount));
     }
 
-    // updateAccount
     @PutMapping("/{id}")
-    public ResponseEntity<AccountResponse> updateAccount(@PathVariable Long id, @RequestBody AccountCore accountCore) {
-        var updatedAccount = accountPort.updateAccount(id, accountCore);
+    public ResponseEntity<AccountResponse> updateAccount(
+            @PathVariable Long id, 
+            @Valid @RequestBody AccountRequest request) {
+        var updatedAccount = accountPort.updateAccount(id, request.toCore(id));
         return ResponseEntity.ok(AccountResponse.fromAccountResponseCore(updatedAccount));
     }
 

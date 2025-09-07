@@ -1,0 +1,44 @@
+# Configuração de teste
+spring:
+  profiles:
+    active: test
+  application:
+    name: My Simple Wallet - Test
+
+  jackson:
+    date-format: dd/MM/yyyy
+    time-zone: America/Sao_Paulo
+
+  # Habilita ProblemDetail (RFC 7807) para testes
+  mvc:
+    problemdetails:
+      enabled: true
+
+  # Configuração de banco de dados H2 em memória para testes
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: ''
+    driver-class-name: org.h2.Driver
+
+  # Configuração JPA/Hibernate para testes
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+  h2:
+    console:
+      enabled: false
+
+server:
+  port: 0  # Porta aleatória para testes
+
+logging:
+  level:
+    org.hibernate.SQL: WARN
+    "org.hibernate.type.descriptor.sql.BasicBinder": WARN
+    br.dev.mission.simplewallet: INFO

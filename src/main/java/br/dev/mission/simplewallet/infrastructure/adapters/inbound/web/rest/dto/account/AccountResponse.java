@@ -1,4 +1,4 @@
-package br.dev.mission.simplewallet.infrastructure.adapters.inbounce.web.rest.dto.account;
+package br.dev.mission.simplewallet.infrastructure.adapters.inbound.web.rest.dto.account;
 
 import java.math.BigDecimal;
 import java.util.UUID;

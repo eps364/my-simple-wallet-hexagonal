@@ -8,6 +8,11 @@ spring:
     date-format: dd/MM/yyyy
     time-zone: America/Sao_Paulo
 
+  # Habilita ProblemDetail (RFC 7807)
+  mvc:
+    problemdetails:
+      enabled: true
+
 server:
   port: ${PORT:8080}
 

@@ -160,6 +160,48 @@ src/main/java/br/dev/mission/simplewallet/
 }
 ```
 
+## 🚨 Tratamento de Erros (ProblemDetail - RFC 7807)
+
+O projeto implementa o padrão **ProblemDetail** para padronizar respostas de erro:
+
+### Estrutura de Resposta de Erro
+
+```json
+{
+  "type": "/problems/not-found",
+  "title": "Resource Not Found",
+  "status": 404,
+  "detail": "Account not found with id: 999",
+  "timestamp": "2025-09-07T15:30:00Z",
+  "path": "/api/accounts/999"
+}
+```
+
+### Tipos de Erro Suportados
+
+- **404 Not Found**: Recurso não encontrado
+- **400 Bad Request**: Dados inválidos ou erro de validação
+- **400 Type Mismatch**: Tipo de parâmetro incorreto
+- **500 Internal Server Error**: Erro interno do servidor
+
+### Endpoints de Demonstração
+
+```bash
+# Testa erro 404
+curl -X GET http://localhost:8080/api/demo/errors/not-found
+
+# Testa erro 400
+curl -X GET http://localhost:8080/api/demo/errors/invalid-data
+
+# Testa erro 500
+curl -X GET http://localhost:8080/api/demo/errors/server-error
+
+# Testa erro de tipo
+curl -X GET http://localhost:8080/api/demo/errors/type-mismatch/abc
+```
+
+**📖 Documentação Completa**: [ProblemDetail Guide](docs/ProblemDetail-Guide.md)
+
 ## 🧪 Executando Testes
 
 ```bash
@@ -247,6 +289,7 @@ Isso torna o sistema mais fácil de testar, manter e adaptar a novas tecnologias
   - **[Git Hub com projeto - Springboot](https://github.com/natanielpaiva/arquitetura-hexagonal-spring)** - Nataniel Paiva
   - **[Git Hub com projeto - Quarkus](https://github.com/natanielpaiva/arquitetura-hexagonal)** - Nataniel Paiva
 - **[Playlist - Arquitetura Hexagonal com Kotlin e Spring Boot](https://youtube.com/playlist?list=PLRHt7FXZbVCQmSscfVQVKT_gegPHurnHs&si=H-ITZcdZmqMgG0Js)** - DevEduardoAlbuquerque
+-  **[](https://youtu.be/j838ynFajnE?si=GM1Ms7FL3o2l2CSD)** - desenvolvedor.io
 
 ## 📄 Licença
 
