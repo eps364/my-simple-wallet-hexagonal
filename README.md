@@ -90,3 +90,5 @@ Isso torna o sistema mais fácil de testar, manter e adaptar a novas tecnologias
 - **[Quando utilizar a Arquitetura Hexagonal - Palestra no TDC](https://youtu.be/opH8tomzw60?si=yh2tW0-rfq21pKSk)** - Nataniel Paiva
   - **[Git Hub com projeto - Springboot](https://github.com/natanielpaiva/arquitetura-hexagonal-spring)** - Nataniel Paiva
   - **[Git Hub com projeto - Quarkus](https://github.com/natanielpaiva/arquitetura-hexagonal)** - Nataniel Paiva
+- **[Playlist - Arquitetura Hexagonal com Kotlin e Spring Boot](https://youtube.com/playlist?list=PLRHt7FXZbVCQmSscfVQVKT_gegPHurnHs&si=H-ITZcdZmqMgG0Js)** - 
+DevEduardoAlbuquerque
