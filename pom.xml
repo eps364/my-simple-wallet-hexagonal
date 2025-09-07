@@ -104,11 +104,11 @@
 		</dependency> -->
 
 		<!-- H2 Database para testes -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-		</dependency> -->
+		</dependency>
 
 		<!-- Dotenv para carregar variáveis de ambiente -->
 		<!-- <dependency>
