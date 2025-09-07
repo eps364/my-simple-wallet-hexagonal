@@ -1,4 +1,4 @@
-package br.dev.mission.simplewallet.infrastructure.mappers;
+package br.dev.mission.simplewallet.infrastructure.mappers.account;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

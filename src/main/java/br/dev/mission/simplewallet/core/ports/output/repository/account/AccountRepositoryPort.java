@@ -1,4 +1,4 @@
-package br.dev.mission.simplewallet.core.ports.output.account;
+package br.dev.mission.simplewallet.core.ports.output.repository.account;
 
 import java.util.List;
 import java.util.Optional;

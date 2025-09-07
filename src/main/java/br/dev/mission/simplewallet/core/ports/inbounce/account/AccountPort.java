@@ -3,15 +3,16 @@ package br.dev.mission.simplewallet.core.ports.inbounce.account;
 import java.util.List;
 
 import br.dev.mission.simplewallet.core.model.account.AccountCore;
+import br.dev.mission.simplewallet.core.ports.output.dto.account.AccountResponseCore;
 
 public interface AccountPort {
-    AccountCore createAccount(AccountCore account);
+    AccountResponseCore createAccount(AccountCore account);
 
-    AccountCore getAccountById(Long id);
+    AccountResponseCore getAccountById(Long id);
 
-    AccountCore updateAccount(Long id, AccountCore account);
+    AccountResponseCore updateAccount(Long id, AccountCore account);
 
     void deleteAccount(Long id);
 
-    List<AccountCore> getAllAccounts();
+    List<AccountResponseCore> getAllAccounts();
 }

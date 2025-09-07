@@ -1,4 +1,4 @@
-package br.dev.mission.simplewallet.infrastructure.repositories;
+package br.dev.mission.simplewallet.infrastructure.repositories.account;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

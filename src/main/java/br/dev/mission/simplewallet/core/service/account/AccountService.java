@@ -9,7 +9,8 @@ import br.dev.mission.simplewallet.core.exceptions.InvalidExceptionCore;
 import br.dev.mission.simplewallet.core.exceptions.NotFoundExceptionCore;
 import br.dev.mission.simplewallet.core.model.account.AccountCore;
 import br.dev.mission.simplewallet.core.ports.inbounce.account.AccountPort;
-import br.dev.mission.simplewallet.core.ports.output.account.AccountRepositoryPort;
+import br.dev.mission.simplewallet.core.ports.output.dto.account.AccountResponseCore;
+import br.dev.mission.simplewallet.core.ports.output.repository.account.AccountRepositoryPort;
 
 @Service
 public class AccountService implements AccountPort {
@@ -22,7 +23,7 @@ public class AccountService implements AccountPort {
     }
 
     @Override
-    public AccountCore createAccount(AccountCore account) {
+    public AccountResponseCore createAccount(AccountCore account) {
         validateAccountForCreation(account);
 
         // Regras de negócio específicas para criação
@@ -30,19 +31,21 @@ public class AccountService implements AccountPort {
             throw new InvalidExceptionCore("Account ID must be null for creation");
         }
 
-        return accountRepositoryPort.save(account);
+        AccountCore savedAccount = accountRepositoryPort.save(account);
+        return AccountResponseCore.fromModel(savedAccount);
     }
 
     @Override
-    public AccountCore getAccountById(Long id) {
+    public AccountResponseCore getAccountById(Long id) {
         validateId(id);
 
-        return accountRepositoryPort.findById(id)
+        AccountCore account = accountRepositoryPort.findById(id)
                 .orElseThrow(() -> new NotFoundExceptionCore("Account not found with id: " + id));
+        return AccountResponseCore.fromModel(account);
     }
 
     @Override
-    public AccountCore updateAccount(Long id, AccountCore account) {
+    public AccountResponseCore updateAccount(Long id, AccountCore account) {
         validateAccountForUpdate(account);
 
         if (!Objects.equals(id, account.getId())) {
@@ -53,7 +56,8 @@ public class AccountService implements AccountPort {
             throw new NotFoundExceptionCore("Account not found with id: " + id);
         }
 
-        return accountRepositoryPort.update(account);
+        AccountCore updatedAccount = accountRepositoryPort.update(account);
+        return AccountResponseCore.fromModel(updatedAccount);
     }
 
     @Override
@@ -69,8 +73,9 @@ public class AccountService implements AccountPort {
     }
 
     @Override
-    public List<AccountCore> getAllAccounts() {
-        return accountRepositoryPort.findAll();
+    public List<AccountResponseCore> getAllAccounts() {
+        List<AccountCore> accounts = accountRepositoryPort.findAll();
+        return accounts.stream().map(AccountResponseCore::fromModel).toList();
     }
 
     private void validateId(Long id) {

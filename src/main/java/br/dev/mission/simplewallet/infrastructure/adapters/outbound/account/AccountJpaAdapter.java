@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 
 import br.dev.mission.simplewallet.core.exceptions.NotFoundExceptionCore;
 import br.dev.mission.simplewallet.core.model.account.AccountCore;
-import br.dev.mission.simplewallet.core.ports.output.account.AccountRepositoryPort;
+import br.dev.mission.simplewallet.core.ports.output.repository.account.AccountRepositoryPort;
 import br.dev.mission.simplewallet.infrastructure.entities.account.AccountEntity;
-import br.dev.mission.simplewallet.infrastructure.mappers.AccountMapper;
-import br.dev.mission.simplewallet.infrastructure.repositories.AccountJpaRepository;
+import br.dev.mission.simplewallet.infrastructure.mappers.account.AccountMapper;
+import br.dev.mission.simplewallet.infrastructure.repositories.account.AccountJpaRepository;
 
 @Component
 public class AccountJpaAdapter implements AccountRepositoryPort {
