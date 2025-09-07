@@ -38,6 +38,8 @@ public class AccountController {
         var updatedAccount = accountPort.updateAccount(id, accountCore);
         return ResponseEntity.ok(AccountResponse.fromAccountResponseCore(updatedAccount));
     }
+
+    @GetMapping
     public ResponseEntity<List<AccountResponse>> getAllAccounts() {
         List<AccountResponseCore> accounts = accountPort.getAllAccounts();
         List<AccountResponse> responses = accounts.stream().map(AccountResponse::fromAccountResponseCore).toList();
