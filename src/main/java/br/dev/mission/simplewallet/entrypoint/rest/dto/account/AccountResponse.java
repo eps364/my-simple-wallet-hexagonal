@@ -1,6 +1,7 @@
 package br.dev.mission.simplewallet.entrypoint.rest.dto.account;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public record AccountResponse(
     Long id,
@@ -8,6 +9,6 @@ public record AccountResponse(
     BigDecimal balance,
     BigDecimal credit,
     Integer dueDate,
-    String userId,
+    UUID userId,
     String username
 ) {}
