@@ -88,3 +88,5 @@ Isso torna o sistema mais fácil de testar, manter e adaptar a novas tecnologias
 - **[Arquitetura Hexagonal na Prática | Arquitetura com Java e Spring Boot](https://youtu.be/UKSj5VJEzps?si=WV9dvtiY0pPyMq5M)** - Fernanda Kipper
 - **[Arquitetura Hexagonal (Explicação de Ports & Adapters Simplificada) // Dicionário do Programador](https://youtu.be/7SaA3HCOc4c?si=vGryZRb_o7W_3vJS)** - Código Fonte TV
 - **[Quando utilizar a Arquitetura Hexagonal - Palestra no TDC](https://youtu.be/opH8tomzw60?si=yh2tW0-rfq21pKSk)** - Nataniel Paiva
+  - **[Git Hub com projeto - Springboot](https://github.com/natanielpaiva/arquitetura-hexagonal-spring)** - Nataniel Paiva
+  - **[Git Hub com projeto - Quarkus](https://github.com/natanielpaiva/arquitetura-hexagonal)** - Nataniel Paiva
