@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import br.dev.mission.simplewallet.core.exceptions.NotFoundException;
+import br.dev.mission.simplewallet.core.exceptions.NotFoundExceptionCore;
 import br.dev.mission.simplewallet.core.model.account.AccountCore;
 import br.dev.mission.simplewallet.core.ports.output.account.AccountRepositoryPort;
 import br.dev.mission.simplewallet.infrastructure.entities.account.AccountEntity;
@@ -53,7 +53,7 @@ public class AccountJpaAdapter implements AccountRepositoryPort {
     @Override
     public AccountCore update(AccountCore account) {
         if (!jpaRepository.existsById(account.getId())) {
-            throw new NotFoundException("Account with id " + account.getId() + " not found.");
+            throw new NotFoundExceptionCore("Account with id " + account.getId() + " not found.");
         }
         AccountEntity entity = mapper.toEntity(account);
         AccountEntity updatedEntity = jpaRepository.save(entity);

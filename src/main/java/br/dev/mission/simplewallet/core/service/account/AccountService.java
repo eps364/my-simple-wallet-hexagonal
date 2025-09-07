@@ -5,8 +5,8 @@ import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
-import br.dev.mission.simplewallet.core.exceptions.InvalidException;
-import br.dev.mission.simplewallet.core.exceptions.NotFoundException;
+import br.dev.mission.simplewallet.core.exceptions.InvalidExceptionCore;
+import br.dev.mission.simplewallet.core.exceptions.NotFoundExceptionCore;
 import br.dev.mission.simplewallet.core.model.account.AccountCore;
 import br.dev.mission.simplewallet.core.ports.inbounce.account.AccountPort;
 import br.dev.mission.simplewallet.core.ports.output.account.AccountRepositoryPort;
@@ -27,7 +27,7 @@ public class AccountService implements AccountPort {
 
         // Regras de negócio específicas para criação
         if (account.getId() != null) {
-            throw new InvalidException("Account ID must be null for creation");
+            throw new InvalidExceptionCore("Account ID must be null for creation");
         }
 
         return accountRepositoryPort.save(account);
@@ -38,14 +38,19 @@ public class AccountService implements AccountPort {
         validateId(id);
 
         return accountRepositoryPort.findById(id)
-                .orElseThrow(() -> new NotFoundException("Account not found with id: " + id));
+                .orElseThrow(() -> new NotFoundExceptionCore("Account not found with id: " + id));
     }
 
     @Override
-    public AccountCore updateAccount(AccountCore account) {
+    public AccountCore updateAccount(Long id, AccountCore account) {
         validateAccountForUpdate(account);
-        if (!accountRepositoryPort.existsById(account.getId())) {
-            throw new NotFoundException("Account not found with id: " + account.getId());
+
+        if (!Objects.equals(id, account.getId())) {
+            throw new InvalidExceptionCore("Path ID and Account ID must match for update");
+        }
+
+        if (!accountRepositoryPort.existsById(id)) {
+            throw new NotFoundExceptionCore("Account not found with id: " + id);
         }
 
         return accountRepositoryPort.update(account);
@@ -57,11 +62,8 @@ public class AccountService implements AccountPort {
 
         // Verifica se a conta existe antes de deletar
         if (!accountRepositoryPort.existsById(id)) {
-            throw new NotFoundException("Account not found with id: " + id);
+            throw new NotFoundExceptionCore("Account not found with id: " + id);
         }
-
-        // Aqui poderia ter regras de negócio para deletar
-        // Ex: verificar se não há transações pendentes
 
         accountRepositoryPort.deleteById(id);
     }
@@ -71,24 +73,23 @@ public class AccountService implements AccountPort {
         return accountRepositoryPort.findAll();
     }
 
-    // Métodos de validação privados
     private void validateId(Long id) {
         if (id == null || id <= 0) {
-            throw new InvalidException("Invalid account ID: " + id);
+            throw new InvalidExceptionCore("Invalid account ID: " + id);
         }
     }
 
     private void validateAccountForCreation(AccountCore account) {
         if (account == null) {
-            throw new InvalidException("Account cannot be null");
+            throw new InvalidExceptionCore("Account cannot be null");
         }
 
         if (account.getDescription() == null || account.getDescription().trim().isEmpty()) {
-            throw new InvalidException("Account description is required");
+            throw new InvalidExceptionCore("Account description is required");
         }
 
         if (account.getUserId() == null) {
-            throw new InvalidException("User ID is required");
+            throw new InvalidExceptionCore("User ID is required");
         }
 
     }
@@ -97,7 +98,7 @@ public class AccountService implements AccountPort {
         validateAccountForCreation(account);
 
         if (account.getId() == null || account.getId() <= 0) {
-            throw new InvalidException("Valid account ID is required for update");
+            throw new InvalidExceptionCore("Valid account ID is required for update");
         }
     }
 }

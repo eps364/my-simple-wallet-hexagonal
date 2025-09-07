@@ -6,8 +6,12 @@ import br.dev.mission.simplewallet.core.model.account.AccountCore;
 
 public interface AccountPort {
     AccountCore createAccount(AccountCore account);
+
     AccountCore getAccountById(Long id);
-    AccountCore updateAccount(AccountCore account);
+
+    AccountCore updateAccount(Long id, AccountCore account);
+
     void deleteAccount(Long id);
+
     List<AccountCore> getAllAccounts();
 }
